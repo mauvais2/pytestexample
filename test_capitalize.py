@@ -9,4 +9,4 @@ def test_capitalize_string():
     assert cap.capitalize_string('test') == 'Test'
     
 def test_capitalize_string_fail():
-    assert capcapitalize_string('test') != 'test'
+    assert cap.capitalize_string('test') != 'test'
