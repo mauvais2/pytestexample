@@ -6,8 +6,8 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
 
-steps:
-  - uses: actions/checkout@v2
-  - uses: s-weigand/setup-conda@v1
-  - run: conda --version
-  - run: which python
+  steps:
+    - uses: actions/checkout@v2
+    - uses: s-weigand/setup-conda@v1
+    - run: conda --version
+    - run: which python
