@@ -14,5 +14,16 @@ jobs:
       - uses: s-weigand/setup-conda@v1
         with:
           activate-conda: false
-      - run: conda --version
-      - run: which python
+      - name: Check Python version
+        run: |
+           conda --version
+           which python
+           python --version
+           python -c "import sys;print(sys.executable);print(sys.version_info)"
+      - name: Check env
+        run: printenv
+      - name: Install and check pandoc version
+        run: |
+           conda install pandoc
+           pandoc -v
+            
