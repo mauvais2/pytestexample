@@ -11,9 +11,18 @@ def test_split():
     dataset = dc.data.NumpyDataset(X, y)
     dataset.X.shape
     dataset.y.shape
+    
+    smiles = [
+        'O=Cc1ccc(O)c(OC)c1',
+        'CN1CCC[C@H]1c2cccnc2',
+        'C1CCCCC1',
+        'c1ccccc1',
+        'CC(=O)O',
+    ]
 
     properties = [0.4, -1.5, 3.2, -0.2, 1.7]
     featurizer = dc.feat.CircularFingerprint(size=1024)
+    
     ecfp = featurizer.featurize(smiles)
     ecfp.shape
 
