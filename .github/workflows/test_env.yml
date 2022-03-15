@@ -40,6 +40,6 @@ jobs:
         run: |
           python --version
       - name: Run setup-conda
-        uses: ./
+        uses: s-weigand/setup-conda@v1
         with:
           activate-conda: false
