@@ -39,3 +39,7 @@ jobs:
       - name: Prepare tests
         run: |
           python --version
+      - name: Run setup-conda
+        uses: ./
+        with:
+          activate-conda: false
