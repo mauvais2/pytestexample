@@ -43,3 +43,15 @@ jobs:
         uses: s-weigand/setup-conda@v1
         with:
           activate-conda: false
+      - name: Create Test env
+        shell: bash
+        run: |
+          conda create -y -n TEST --file environment.txt
+          source activate TEST
+          pip install requirements.txt
+          conda install pandoc graphviz
+          pip install -q pytest
+          which pip
+          which pandoc
+          printenv
+          pytest
