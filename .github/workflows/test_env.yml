@@ -26,3 +26,16 @@ jobs:
         run: |
            conda install pandoc
            pandoc -v
+  test-integration-default:
+    name: Default settings
+    runs-on: ${{ matrix.os }}
+    env:
+      CONDA_CHANNELS: 'defaults'
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prepare tests
+        run: |
+          python --version
