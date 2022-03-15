@@ -48,7 +48,7 @@ jobs:
         run: |
           conda create -y -n TEST --file environment.txt
           source activate TEST
-          pip install requirements.txt
+          pip install -r requirement.txt
           conda install pandoc graphviz
           pip install -q pytest
           which pip
