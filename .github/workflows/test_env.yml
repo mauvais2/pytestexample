@@ -1,0 +1,59 @@
+name: Test Conda Env
+
+on: [push]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - uses: s-weigand/setup-conda@v1
+        with:
+          activate-conda: false
+      - name: Check Python version
+        run: |
+           conda --version
+           which python
+           python --version
+           python -c "import sys;print(sys.executable);print(sys.version_info)"
+      - name: Check env
+        run: printenv
+      - name: Install and check pandoc version
+        run: |
+           conda install pandoc
+           pandoc -v
+           
+  test-integration-test-env-no-login:
+    name: Env no login shell
+    runs-on: ubuntu-latest
+    env:
+      CONDA_CHANNELS: 'defaults'
+      ENV_PYTHON: 3.7
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run setup-conda
+        uses: ./
+        with:
+          activate-conda: false
+      - name: Create Test env
+        shell: bash
+        run: |
+          conda create -y -n TEST --file environment.txt
+          source activate TEST
+          pip install -r requirement.txt
+          conda install pandoc graphviz
+          pip install -q pytest
+          which pip
+          which pandoc
+          printenv
+      - name: Check env
+        run: printenv
+      - name: Run tests
+        shell: bash
+        run: |
+          source activate TEST
+          python -m pytest
