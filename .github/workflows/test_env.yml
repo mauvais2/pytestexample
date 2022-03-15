@@ -26,34 +26,3 @@ jobs:
         run: |
            conda install pandoc
            pandoc -v
-           
-  test-integration-test-env-no-login:
-    name: Env no login shell
-    runs-on: ubuntu-latest
-    env:
-      CONDA_CHANNELS: 'defaults'
-      ENV_PYTHON: 3.7
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run setup-conda
-        uses: ./
-        with:
-          activate-conda: false
-      - name: Create Test env
-        shell: bash
-        run: |
-          conda create -y -n TEST --file environment.txt
-          source activate TEST
-          pip install -r requirement.txt
-          conda install pandoc graphviz
-          pip install -q pytest
-          which pip
-          which pandoc
-          printenv
-      - name: Check env
-        run: printenv
-      - name: Run tests
-        shell: bash
-        run: |
-          source activate TEST
-          python -m pytest
