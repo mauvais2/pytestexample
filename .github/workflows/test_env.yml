@@ -46,12 +46,14 @@ jobs:
       - name: Create Test env
         shell: bash
         run: |
-          conda create -y -n TEST python=3.7 --file environment.txt
+          conda create -y -n TEST python=3.7
           source activate TEST
-          pip install -r requirement.txt
-          conda install pandoc graphviz
-          pip install -q pytest
-          which pip
-          which pandoc
+          while read environment; do conda install --yes $environment; done < environment.txt
+          python -m pip install -upgrade pip
+          pip install -r requirements.txt
+          #conda install pandoc graphviz
+          #pip install -q pytest
+          #which pip
+          #which pandoc
           printenv
           pytest
