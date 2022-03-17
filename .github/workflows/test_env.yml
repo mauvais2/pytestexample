@@ -37,11 +37,11 @@ jobs:
       - name: Run setup-conda
         uses: s-weigand/setup-conda@v1
         with:
-          activate-conda: false
+          activate-conda: true
       - name: Create Test env
         shell: bash
         run: |
           conda create -y -n TEST python=3.7 --file environment.txt
           source activate TEST
           conda info --envs
-#          python -m pip install -upgrade pip
+          python -m pip install -upgrade pip
