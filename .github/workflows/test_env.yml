@@ -43,3 +43,5 @@ jobs:
         run: |
           conda create -y -n TEST python=3.7
           source activate TEST
+          while read environment; do conda install --yes $environment; done < environment.txt
+          python -m pip install -upgrade pip
