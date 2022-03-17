@@ -28,12 +28,7 @@ jobs:
            pandoc -v
   test-integration-default:
     name: Default settings
-    runs-on: ${{ matrix.os }}
-    env:
-      CONDA_CHANNELS: 'defaults'
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Prepare tests
@@ -48,12 +43,3 @@ jobs:
         run: |
           conda create -y -n TEST python=3.7
           source activate TEST
-          while read environment; do conda install --yes $environment; done < environment.txt
-          python -m pip install -upgrade pip
-          pip install -r requirements.txt
-          #conda install pandoc graphviz
-          #pip install -q pytest
-          #which pip
-          #which pandoc
-          printenv
-          pytest
