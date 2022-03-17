@@ -41,7 +41,6 @@ jobs:
       - name: Create Test env
         shell: bash
         run: |
-          conda create -y -n TEST python=3.7
+          conda create -y -n TEST python=3.7 --file environment.txt
           source activate TEST
-          while read environment; do conda install --yes $environment; done < environment.txt
           python -m pip install -upgrade pip
