@@ -39,7 +39,6 @@ jobs:
         with:
           activate-conda: true
       - name: Create Test env
-        shell: bash
         run: |
           conda create -y -n TEST python=3.7 --file environment.txt
           source activate TEST
@@ -47,4 +46,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           printenv
+      - name: Run Test 
+        run: |
           pytest
