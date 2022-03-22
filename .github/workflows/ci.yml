@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           conda create -y -n TEST python=3.7 --file environment.txt
-          conda activate TEST
+          source activate TEST
           conda info --envs
           python -m pip install --upgrade pip
           pip install -r requirements.txt
