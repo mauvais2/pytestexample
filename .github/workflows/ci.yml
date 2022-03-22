@@ -25,4 +25,6 @@ jobs:
           pip install -r requirements.txt
           printenv
       - name: Run tests with pytest
-        run: pytest 
+        run: |
+          pip install pytest
+          pytest 
