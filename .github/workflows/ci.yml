@@ -16,6 +16,10 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
+      - name: Run setup-conda
+        uses: s-weigand/setup-conda@v1
+        with:
+          activate-conda: true
       - name: Install dependencies
         run: |
           conda create -y -n TEST python=3.7 --file environment.txt
